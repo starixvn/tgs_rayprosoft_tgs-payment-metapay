@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-    <ProjectReference Include="..\Tgs.Payment.MetaPay.Client\Tgs.Payment.MetaPay.Client.csproj" />
-  </ItemGroup>
+	  <ProjectReference Include="..\MetaPay.Client\MetaPay.Client.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -17,9 +17,9 @@
 		<PackageReference Include="Tgs.PaymentService.Client" Version="0.6.24" />
 		<PackageReference Include="TGS.ServiceUtility" Version="0.2.0" />
 	</ItemGroup>
-	
-  <ItemGroup>
-    <ProjectReference Include="..\Tgs.Payment.MetaPay.Client\Tgs.Payment.MetaPay.Client.csproj" />
-  </ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MetaPay.Client\MetaPay.Client.csproj" />
+	</ItemGroup>
 
 </Project>

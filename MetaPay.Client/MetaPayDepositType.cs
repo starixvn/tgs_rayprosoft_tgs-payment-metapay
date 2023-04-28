@@ -1,4 +1,4 @@
-﻿namespace Tgs.Payment.MetaPay;
+﻿namespace Tgs.Payment.MetaPay.Client;
 
 public class MetaPayDepositType
 {

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Tgs.Payment.Clients;
 using Tgs.Payment.MetaPay;
+using Tgs.Payment.MetaPay.Client;
 
 var builder = Host.CreateApplicationBuilder(args);
 

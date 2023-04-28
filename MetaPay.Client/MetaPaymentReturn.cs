@@ -1,4 +1,4 @@
-﻿namespace Tgs.Payment.MetaPay;
+﻿namespace Tgs.Payment.MetaPay.Client;
 public record MetaPaymentReturn
 {
     public string AppId { get; init; } = default!;

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Tgs.Payment.Clients;
 using Tgs.Payment.MetaPay.ApplicationServices;
+using Tgs.Payment.MetaPay.Client;
 using Tgs.Payment.MetaPay.ViewModels;
 using Tgs.ServiceUtility;
 

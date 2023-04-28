@@ -12,15 +12,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaPay.Core", "MetaPay.Core\MetaPay.Core.csproj", "{75FF9D52-3007-489E-8DBC-71B843F033F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaPay.Core", "MetaPay.Core\MetaPay.Core.csproj", "{75FF9D52-3007-489E-8DBC-71B843F033F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.Payment.MetaPay.Client", "Tgs.Payment.MetaPay.Client\Tgs.Payment.MetaPay.Client.csproj", "{760C1AFA-3E49-403D-9F98-86A19B7E2BA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaPay.Client", "MetaPay.Client\MetaPay.Client.csproj", "{760C1AFA-3E49-403D-9F98-86A19B7E2BA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaPayTest", "MetaPayTest\MetaPayTest.csproj", "{AEF7B973-DE20-44F3-B7FB-F390371A0F53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaPayTest", "MetaPayTest\MetaPayTest.csproj", "{AEF7B973-DE20-44F3-B7FB-F390371A0F53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaPay.Core.UnitTests", "MetaPay.Core.UnitTests\MetaPay.Core.UnitTests.csproj", "{0AC2C9A5-F9BC-41BD-9673-92CC13201F6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaPay.Core.UnitTests", "MetaPay.Core.UnitTests\MetaPay.Core.UnitTests.csproj", "{0AC2C9A5-F9BC-41BD-9673-92CC13201F6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.Payment.MetaPay.IntegrationTests", "Tgs.Payment.MetaPay.IntegrationTests\Tgs.Payment.MetaPay.IntegrationTests.csproj", "{0467BECA-5508-42BF-AC9D-4CA881DAED72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.Payment.MetaPay.IntegrationTests", "Tgs.Payment.MetaPay.IntegrationTests\Tgs.Payment.MetaPay.IntegrationTests.csproj", "{0467BECA-5508-42BF-AC9D-4CA881DAED72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

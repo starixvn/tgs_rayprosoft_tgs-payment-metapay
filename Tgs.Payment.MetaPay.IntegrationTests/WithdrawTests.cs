@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Tgs.Payment.Clients;
+using Tgs.Payment.MetaPay.Client;
 using Xunit.Abstractions;
 
 namespace Tgs.Payment.MetaPay.IntegrationTests;

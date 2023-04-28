@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Tgs.Payment.MetaPay.JsonConverters;
+namespace Tgs.Payment.MetaPay.Client.JsonConverters;
 
 internal class MetaPayWithdrawTypeConverter : JsonConverter<MetaPayWithdrawType>
 {
