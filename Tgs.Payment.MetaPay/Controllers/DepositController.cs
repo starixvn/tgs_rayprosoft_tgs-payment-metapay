@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Tgs.Payment.Clients;
 using Tgs.Payment.MetaPay.ApplicationServices;
@@ -20,7 +19,6 @@ public class DepositController : ControllerBase
     }
 
     [HttpPost("callback", Name = "NotifyDeposit")]
-    [Produces(MediaTypeNames.Text.Plain)]
     public async Task<string> DepositCallbackAsync(
         [FromServices] MetaPaySigner signer,
         [FromServices] IGetService<GetDepositFormQuery, DepositForm?> getService,

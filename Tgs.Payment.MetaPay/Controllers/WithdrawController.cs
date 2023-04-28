@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Tgs.Payment.Clients;
 using Tgs.Payment.MetaPay.ApplicationServices;
@@ -19,15 +18,14 @@ public class WithdrawController : ControllerBase
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    [HttpPost("callback", Name = "NotifyWithdraw")]    
+    [HttpPost("callback", Name = "NotifyWithdraw")]
     public async Task<string> WithdrawCallbackAsync(
         [FromServices] MetaPaySigner signer,
         [FromServices] IGetService<GetWithdrawFormQuery, WithdrawForm?> getService,
         [FromServices] IPaymentServiceClient paymentServiceClient,
         [FromServices] IPaymentClient paymentClient,
         [FromBody] CallbackWithdrawViewModel source)
-    {
-        return "SUCCESS";
+    {        
         _logger.LogInformation($"Withdraw Callback: {JsonSerializer.Serialize(source)}");
 
         var formId = Guid.Parse(source.ReferenceNo);
