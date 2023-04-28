@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Tgs.Payment.Clients;
+using Tgs.Payment.MetaPay.Client;
 using Tgs.ServiceUtility;
 
 namespace Tgs.Payment.MetaPay.ApplicationServices;

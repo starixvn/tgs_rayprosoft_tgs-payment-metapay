@@ -4,11 +4,15 @@
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <RootNamespace>Tgs.Payment.MetaPay</RootNamespace>
+	  <RootNamespace>Tgs.Payment.MetaPay.Client</RootNamespace>
 	  <Version>0.0.3</Version>
 	  <Authors>Raypro</Authors>
 	  <Company>Raypro</Company>
 	  <PackageId>Tgs.Payment.MetaPay.Client</PackageId>
+	  <Title>Tgs.Payment.MetaPay.Client</Title>
+	<PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-payment-metapay</PackageProjectUrl>
+    <RepositoryUrl>https://gitlab.com/rayprosoft/tgs-payment-metapay.git</RepositoryUrl>
+    <PackageTags>Tgs Payment MetaPay</PackageTags>
   </PropertyGroup>
 
 </Project>

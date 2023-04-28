@@ -3,6 +3,7 @@ using System.Text.Json;
 using Google.Protobuf;
 using Microsoft.Extensions.Options;
 using Tgs.MessageQueue;
+using Tgs.Payment.MetaPay.Client;
 using Tgs.Payment.Protos;
 
 namespace Tgs.Payment.MetaPay.MessageQueue;

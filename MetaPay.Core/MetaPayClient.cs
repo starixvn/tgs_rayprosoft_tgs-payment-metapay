@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Web;
 using Microsoft.Extensions.Logging;
+using Tgs.Payment.MetaPay.Client;
 
 namespace Tgs.Payment.MetaPay;
 

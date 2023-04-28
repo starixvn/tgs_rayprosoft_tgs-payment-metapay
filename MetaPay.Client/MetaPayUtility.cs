@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using Tgs.Payment.MetaPay.JsonConverters;
+using Tgs.Payment.MetaPay.Client.JsonConverters;
 
-namespace Tgs.Payment.MetaPay;
+namespace Tgs.Payment.MetaPay.Client;
 
 public static class MetaPayUtility
 {
