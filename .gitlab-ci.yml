@@ -29,7 +29,7 @@ push-nuget:
     - push_package 'MetaPay.Client'
   artifacts:
     paths:
-      - WandaPay.Client/bin/$BuildConfiguration/*.nupkg
+      - MetaPay.Client/bin/$BuildConfiguration/*.nupkg
 
 push-docker-image:
   extends: .push-docker-image-template
