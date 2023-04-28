@@ -4,14 +4,13 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BuildConfiguration=Release
 WORKDIR /src
 COPY ["nuget.config", "."]
 COPY ["Tgs.Payment.MetaPay/Tgs.Payment.MetaPay.csproj", "Tgs.Payment.MetaPay/"]
 COPY ["MetaPay.Core/MetaPay.Core.csproj", "MetaPay.Core/"]
-COPY ["Tgs.Payment.MetaPay.Client/Tgs.Payment.MetaPay.Client.csproj", "Tgs.Payment.MetaPay.Client/"]
+COPY ["MetaPay.Client/MetaPay.Client.csproj", "MetaPay.Client/"]
 RUN dotnet restore "Tgs.Payment.MetaPay/Tgs.Payment.MetaPay.csproj"
 COPY . .
 WORKDIR "/src/Tgs.Payment.MetaPay"
