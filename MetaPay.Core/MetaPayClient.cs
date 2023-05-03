@@ -181,4 +181,38 @@ internal class MetaPayClient
             r => r!["bankName"]!.ToString(),
             r => r!["bankCode"]!.ToString());
     }
+
+    public async ValueTask<MetaPayClientQueryDepositResponse> QueryDepositFormStatusAsync(string appId, string privateKey, string thirdPartyOrderNo, Guid formId, CancellationToken cancellationToken = default)
+    {
+        var data = new Dictionary<string, string?>
+        {
+            ["appId"] = appId,
+            ["transId"] = thirdPartyOrderNo,
+            ["referenceNo"] = formId.ToString()
+        };
+
+        var sign = _signer.CreateSign(data, privateKey);
+
+        data["sign"] = sign;
+
+        var response = await _httpClient
+         .PostAsJsonAsync("/openapi/payment/collect/queryCollectOrder", data, cancellationToken)
+         .ConfigureAwait(false);
+
+        _ = response.EnsureSuccessStatusCode();
+
+        var body = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+        _logger.LogInformation("MetaPayClient QueryDeposit Body:{body}", body);
+
+        var node = JsonSerializer.Deserialize<JsonNode>(body, _jsonSerializerOptions);
+
+        if (node is null)
+            throw new ApiFailException("QueryDeposit response can't read.");
+
+        if (node["platRespCode"]!.ToString() != "0")
+            throw new ApiFailException();
+
+        return new MetaPayClientQueryDepositResponse(node["status"]!.GetValue<int>());
+    }
 }
