@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Tgs.MessageQueue;
 using Tgs.Payment.Clients;
@@ -65,7 +66,7 @@ internal class DepositTimeoutCheckHandler : IMessageHandler
 
             var result = await _metaPayClient.QueryDepositFormStatusAsync(
                 applyInfo.Settings.AppId,
-                applyInfo.Settings.PrivateKey,
+                Encoding.UTF8.GetString(Convert.FromBase64String(applyInfo.Settings.PrivateKey)),
                 depositForm.ThirdPartyOrderNo!,
                 formId,
                 cancellationToken).ConfigureAwait(false);
