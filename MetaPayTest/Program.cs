@@ -30,25 +30,26 @@ var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
 var paymentClient = app.Services.GetRequiredService<IPaymentClient>();
 
-//var depositSettings = new MetaPayDepositSettings(
-//   appId,
-//   Convert.ToBase64String(Encoding.UTF8.GetBytes(privateKey)),
-//   Convert.ToBase64String(Encoding.UTF8.GetBytes(publicKey)),
-//   MetaPayDepositType.Cashier_Desk,
-//   new Uri("http://localhost"),
-//   Guid.NewGuid(),
-//   "0922189379",
-//   "Satya,Hernandez,Kevin");
+//Deposit
+var depositSettings = new MetaPayDepositSettings(
+   appId,
+   Convert.ToBase64String(Encoding.UTF8.GetBytes(privateKey)),
+   Convert.ToBase64String(Encoding.UTF8.GetBytes(publicKey)),
+   MetaPayDepositType.Cashier_Desk,
+   new Uri("http://localhost"),
+   Guid.NewGuid(),
+   "0922189379",
+   "Satya,Hernandez,Kevin");
 
-//var applyInfo = JsonSerializer.Serialize(depositSettings, MetaPayUtility.SerializerOptions);
-//logger.LogInformation("ApplyInfo: {applyInfo}", applyInfo);
+var applyInfo = JsonSerializer.Serialize(depositSettings, MetaPayUtility.SerializerOptions);
+logger.LogInformation("ApplyInfo: {applyInfo}", applyInfo);
 
-//var depositReturn = await paymentClient.DepositAsync(
-//    "tgs.payment.metapay.deposit",
-//    100M,
-//    applyInfo).ConfigureAwait(false);
+var depositReturn = await paymentClient.DepositAsync(
+    "tgs.payment.metapay.deposit",
+    100M,
+    applyInfo).ConfigureAwait(false);
 
-//logger.LogInformation("DepositReturn: {depositReturn}", depositReturn);
+logger.LogInformation("DepositReturn: {depositReturn}", depositReturn);
 
 
 //Withdraw GCASH
@@ -72,26 +73,29 @@ var paymentClient = app.Services.GetRequiredService<IPaymentClient>();
 //    applyInfo).ConfigureAwait(false);
 
 //logger.LogInformation("WithdrawReturn: {withdrawReturn}", withdrawReturn);
-var withdrawSettings = new MetaPayWithdrawSettings(
-    appId,
-    Convert.ToBase64String(Encoding.UTF8.GetBytes(privateKey)),
-    Convert.ToBase64String(Encoding.UTF8.GetBytes(publicKey)),
-    PaymentType: MetaPayWithdrawType.BANKRT,
-    FormId: Guid.NewGuid(),
-    AccountNo: "09112233888",
-    UserName: "SANTOS,CRUZ,JUAN",
-    MobileNumber: "09112233888",
-    BankName: "Asia United Bank");//BankCode:10011
 
-var applyInfo = JsonSerializer.Serialize(withdrawSettings, MetaPayUtility.SerializerOptions);
-logger.LogInformation("ApplyInfo: {applyInfo}", applyInfo);
 
-var withdrawReturn = await paymentClient.WithdrawAsync(
-    "tgs.payment.metapay.withdraw",
-    100M,
-    applyInfo).ConfigureAwait(false);
+//Withdraw BANKRT
+//var withdrawSettings = new MetaPayWithdrawSettings(
+//    appId,
+//    Convert.ToBase64String(Encoding.UTF8.GetBytes(privateKey)),
+//    Convert.ToBase64String(Encoding.UTF8.GetBytes(publicKey)),
+//    PaymentType: MetaPayWithdrawType.BANKRT,
+//    FormId: Guid.NewGuid(),
+//    AccountNo: "09112233888",
+//    UserName: "SANTOS,CRUZ,JUAN",
+//    MobileNumber: "",
+//    BankName: "Asia United Bank");//BankCode:10011
 
-logger.LogInformation("WithdrawReturn: {withdrawReturn}", withdrawReturn);
+//var applyInfo = JsonSerializer.Serialize(withdrawSettings, MetaPayUtility.SerializerOptions);
+//logger.LogInformation("ApplyInfo: {applyInfo}", applyInfo);
+
+//var withdrawReturn = await paymentClient.WithdrawAsync(
+//    "tgs.payment.metapay.withdraw",
+//    100M,
+//    applyInfo).ConfigureAwait(false);
+
+//logger.LogInformation("WithdrawReturn: {withdrawReturn}", withdrawReturn);
 
 
 

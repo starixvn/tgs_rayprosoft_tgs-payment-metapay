@@ -46,9 +46,9 @@ internal class DepositProcessor : IMessageProcessor
         var applyInfo = new MetaPayDepositApplyInfo(
             settings,
             new MetaPayDepositResponse(
-                depositResponse.Amount,
-                null,
+                depositResponse.Amount,                
                 depositResponse.FormId,
+                depositResponse.ThirdPartyOrderNo,
                 depositResponse.RedirectUrl));
 
         var msg = new DepositResponse
