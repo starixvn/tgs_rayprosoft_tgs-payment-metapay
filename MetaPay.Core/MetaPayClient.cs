@@ -40,9 +40,9 @@ internal class MetaPayClient
             ["amount"] = order.Amount.ToString(),
             ["mobile"] = order.Mobile,
             ["userName"] = order.UserName,
-            ["address"] = "address",
-            ["remark"] = "remark",
-            ["email"] = "tgs@rayprosoft.com",
+            ["address"] = "",
+            ["remark"] = "",
+            ["email"] = "",
             ["productType"] = order.PayType.ToTypeValue(),
             ["notificationURL"] = order.CallbackUrl.AbsoluteUri,
         };
