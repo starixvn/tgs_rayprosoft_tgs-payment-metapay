@@ -30,12 +30,12 @@ var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
 var paymentClient = app.Services.GetRequiredService<IPaymentClient>();
 
-//Deposit
+//Deposit GCash
 var depositSettings = new MetaPayDepositSettings(
    appId,
    Convert.ToBase64String(Encoding.UTF8.GetBytes(privateKey)),
    Convert.ToBase64String(Encoding.UTF8.GetBytes(publicKey)),
-   MetaPayDepositType.Cashier_Desk,
+   MetaPayDepositType.GCashOnline,
    new Uri("http://localhost"),
    Guid.NewGuid(),
    "0922189379",
@@ -96,7 +96,6 @@ logger.LogInformation("DepositReturn: {depositReturn}", depositReturn);
 //    applyInfo).ConfigureAwait(false);
 
 //logger.LogInformation("WithdrawReturn: {withdrawReturn}", withdrawReturn);
-
 
 
 Console.WriteLine("Hello, MetaPay!");

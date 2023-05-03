@@ -2,25 +2,25 @@
 using Tgs.Payment.Clients;
 using Tgs.Payment.MetaPay.ApplicationServices;
 
-namespace MetaPay.Core.UnitTests;
+namespace MetaPay.Core.UnitTests.ApplicationServices;
 
-public class DepositTests
+public class WithdrawTests
 {
     [Fact]
-    public async Task 取得存款單資料()
+    public async Task 取得提款單資料()
     {
         // Arrange
         var fakePaymentServiceClient = Substitute.For<IPaymentServiceClient>();
 
-        var sut = new GetDepositFormQueryService(fakePaymentServiceClient);
+        var sut = new GetWithdrawFormQueryService(fakePaymentServiceClient);
 
-        var query = new GetDepositFormQuery(Guid.NewGuid());
+        var query = new GetWithdrawFormQuery(Guid.NewGuid());
 
         // Act
         _ = await sut.GetAsync(query);
 
         // Assert
         _ = fakePaymentServiceClient.Received(1)
-            .GetDepositFormAsync(Arg.Is(query.FormId));
+            .GetWithdrawFormAsync(Arg.Is(query.FormId));
     }
 }
