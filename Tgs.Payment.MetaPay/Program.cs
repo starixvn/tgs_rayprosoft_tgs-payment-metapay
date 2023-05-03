@@ -53,7 +53,11 @@ builder.Services.AddMessageQueue()
         .AddProcessor(
             ProcessorTypes.WithdrawProcessorType,
             "tgs.payment.metapay.withdraw",
-            "tgs.payment.metapay.withdraw"))
+            "tgs.payment.metapay.withdraw")
+        .AddHandler(
+            ProcessorTypes.DepositTimeoutCheckHandlerType,
+            "tgs.payment.metapay.deposit.schedule.reject",
+            "tgs.payment.metapay.deposit.schedule.reject"))
     .AddNatsGlobPatternExchange("*");
 
 builder.Services.AddControllers();

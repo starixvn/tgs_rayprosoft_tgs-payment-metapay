@@ -3,6 +3,7 @@ using System.Text.Json;
 using Google.Protobuf;
 using Microsoft.Extensions.Options;
 using Tgs.MessageQueue;
+using Tgs.Payment.Clients;
 using Tgs.Payment.MetaPay.Client;
 using Tgs.Payment.Protos;
 
@@ -11,11 +12,16 @@ namespace Tgs.Payment.MetaPay.MessageQueue;
 internal class DepositProcessor : IMessageProcessor
 {
     private readonly MetaPayClient _metaPayClient;
+    private readonly IPaymentClient _paymentClient;
     private readonly MetaPayOptions _options;
 
-    public DepositProcessor(MetaPayClient metaPayClient, IOptions<MetaPayOptions> optionsAccessor)
+    public DepositProcessor(
+        MetaPayClient metaPayClient,
+        IPaymentClient paymentClient,
+        IOptions<MetaPayOptions> optionsAccessor)
     {
         _metaPayClient = metaPayClient ?? throw new ArgumentNullException(nameof(metaPayClient));
+        _paymentClient = paymentClient ?? throw new ArgumentNullException(nameof(paymentClient));
         _options = optionsAccessor.Value;
     }
 
@@ -51,9 +57,15 @@ internal class DepositProcessor : IMessageProcessor
                 depositResponse.ThirdPartyOrderNo,
                 depositResponse.RedirectUrl));
 
+        await _paymentClient.ScheduleAsync(
+            "tgs.payment.metapay.deposit.schedule.reject",
+            settings.FormId,
+            DateTime.UtcNow.AddMinutes(11D),
+            cancellationToken).ConfigureAwait(false);
+
         var msg = new DepositResponse
         {
-            Result = JsonSerializer.Serialize(applyInfo)
+            Result = JsonSerializer.Serialize(applyInfo,MetaPayUtility.SerializerOptions)
         };
 
         return msg.ToByteArray();
