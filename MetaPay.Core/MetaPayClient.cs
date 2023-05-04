@@ -87,7 +87,7 @@ internal class MetaPayClient
             ["appId"] = appId,
             ["pickupCenter"] = order.PayType.ToTypeValue(),
             ["referenceNo"] = order.FormId.ToString("N"),
-            ["collectedAmount"] = order.Amount.ToString(),
+            ["collectedAmount"] = order.Amount.ToString("#.##"),
             ["accountNo"] = order.AccountNo,
             ["userName"] = order.UserName,
             ["birthDate"] = DateTime.Now.ToString("yyyy-MM-dd"),
