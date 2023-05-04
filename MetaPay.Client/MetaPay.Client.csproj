@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	  <RootNamespace>Tgs.Payment.MetaPay.Client</RootNamespace>
-	  <Version>0.0.7</Version>
+	  <Version>0.0.8</Version>
 	  <Authors>Raypro</Authors>
 	  <Company>Raypro</Company>
 	  <PackageId>Tgs.Payment.MetaPay.Client</PackageId>
