@@ -66,6 +66,9 @@ internal class MetaPayClient
         if (node is null)
             throw new ApiFailException("Deposit response can't read.");
 
+        if (!_signer.VerifySign(JsonSerializer.Deserialize<Dictionary<string, object>>(body, _jsonSerializerOptions)!, publicKey))
+            throw new ApiFailException("Deposit verify sign error");
+
         if (node["platRespCode"]!.ToString() != "0")
             throw new ApiFailException(node["msg"]!.ToString());
 
@@ -80,7 +83,7 @@ internal class MetaPayClient
             Sign: node["sign"]!.ToString());
     }
 
-    public async ValueTask<MetaPayClientWithdrawResponse> WithdrawAsync(string appId, string privateKey, WithdrawOrder order, CancellationToken cancellationToken = default)
+    public async ValueTask<MetaPayClientWithdrawResponse> WithdrawAsync(string appId, string publicKey, string privateKey, WithdrawOrder order, CancellationToken cancellationToken = default)
     {
         var data = new Dictionary<string, string?>
         {
@@ -136,6 +139,9 @@ internal class MetaPayClient
 
         if (node is null)
             throw new ApiFailException("Withdraw response can't read.");
+
+        if (!_signer.VerifySign(JsonSerializer.Deserialize<Dictionary<string, object>>(body, _jsonSerializerOptions)!, publicKey))
+            throw new ApiFailException("Withdraw verify sign error");
 
         if (node["platRespCode"]!.ToString() != "0")
             throw new ApiFailException(node["msg"]!.ToString());

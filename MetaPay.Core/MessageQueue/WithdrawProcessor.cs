@@ -44,6 +44,7 @@ internal class WithdrawProcessor : IMessageProcessor
 
         var withdrawResponse = await _metaPayClient.WithdrawAsync(
             settings.AppId,
+            Encoding.UTF8.GetString(Convert.FromBase64String(settings.PublicKey)),
             Encoding.UTF8.GetString(Convert.FromBase64String(settings.PrivateKey)),
             order,
             cancellationToken).ConfigureAwait(false);
