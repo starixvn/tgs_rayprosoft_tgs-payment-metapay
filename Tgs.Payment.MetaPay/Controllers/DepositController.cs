@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Tgs.Payment.Clients;
 using Tgs.Payment.MetaPay.ApplicationServices;
@@ -44,7 +45,9 @@ public class DepositController : ControllerBase
 
         var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(JsonSerializer.Serialize(source))!;
 
-        if (!signer.VerifySign(dict, depositForm.ApplyInfo!.Settings.PublicKey))
+        var publicKey = Encoding.UTF8.GetString(Convert.FromBase64String(depositForm.ApplyInfo!.Settings.PublicKey));
+
+        if (!signer.VerifySign(dict, publicKey))
         {
             _logger.LogWarning("Deposit Callback Sign value invalid. input: {sign}", source.Sign);
             return "FAIL";
