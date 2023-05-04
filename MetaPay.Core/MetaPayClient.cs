@@ -188,7 +188,7 @@ internal class MetaPayClient
         {
             ["appId"] = appId,
             ["transId"] = thirdPartyOrderNo,
-            ["referenceNo"] = formId.ToString()
+            ["referenceNo"] = formId.ToString("N")
         };
 
         var sign = _signer.CreateSign(data, privateKey);
