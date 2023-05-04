@@ -59,8 +59,8 @@ public class DepositTests
         var applyInfo = new MetaPayDepositApplyInfo(
             new MetaPayDepositSettings(
                 "2081536946682450",
-                privateKey,
-                publicKey,
+                Convert.ToBase64String(Encoding.UTF8.GetBytes(privateKey)),
+                Convert.ToBase64String(Encoding.UTF8.GetBytes(publicKey)),
                 MetaPayDepositType.Cashier_Desk,
                 ReturnUrl: new Uri("https://dev-payment.rpgp.cc/metapay/deposit/callback"),
                 formId,

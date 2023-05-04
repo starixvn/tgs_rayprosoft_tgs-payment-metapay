@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Tgs.Payment.Clients;
 using Tgs.Payment.MetaPay.ApplicationServices;
@@ -44,7 +46,9 @@ public class WithdrawController : ControllerBase
 
         var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(JsonSerializer.Serialize(source))!;
 
-        if (!signer.VerifySign(dict, withdrawForm.ApplyInfo!.Settings.PublicKey))
+        var publicKey = Encoding.UTF8.GetString(Convert.FromBase64String(withdrawForm.ApplyInfo!.Settings.PublicKey));
+
+        if (!signer.VerifySign(dict, publicKey))
         {
             _logger.LogWarning("Withdraw Callback Sign value invalid. input: {sign}", source.Sign);
             return "FAIL";

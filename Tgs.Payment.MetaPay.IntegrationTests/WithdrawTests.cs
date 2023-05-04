@@ -42,8 +42,8 @@ public class WithdrawTests
 
         var settings = new MetaPayWithdrawSettings(
             "2081536946682450",
-            privateKey,
-            publicKey,
+            Convert.ToBase64String(Encoding.UTF8.GetBytes(privateKey)),
+            Convert.ToBase64String(Encoding.UTF8.GetBytes(publicKey)),
             MetaPayWithdrawType.GCASH,
             formId,
             "09112233888",
@@ -121,8 +121,8 @@ public class WithdrawTests
 
         var settings = new MetaPayWithdrawSettings(
             "2081536946682450",
-            privateKey,
-            publicKey,
+            Convert.ToBase64String(Encoding.UTF8.GetBytes(privateKey)),
+            Convert.ToBase64String(Encoding.UTF8.GetBytes(publicKey)),
             MetaPayWithdrawType.GCASH,
             formId,
             "09112233888",
