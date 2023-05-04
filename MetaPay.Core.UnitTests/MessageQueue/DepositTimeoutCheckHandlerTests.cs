@@ -10,7 +10,7 @@ using Tgs.Payment.MetaPay.Client;
 using Tgs.Payment.MetaPay.MessageQueue;
 using Tgs.Payment.Protos;
 
-namespace MetaPay.Core.UnitTests;
+namespace MetaPay.Core.UnitTests.MessageQueue;
 
 public class DepositTimeoutCheckHandlerTests
 {

@@ -3,6 +3,7 @@ using System.Text.Json;
 using Google.Protobuf;
 using Microsoft.Extensions.Options;
 using Tgs.MessageQueue;
+using Tgs.Payment.Clients;
 using Tgs.Payment.MetaPay.Client;
 using Tgs.Payment.Protos;
 
@@ -11,11 +12,16 @@ namespace Tgs.Payment.MetaPay.MessageQueue;
 internal class WithdrawProcessor : IMessageProcessor
 {
     private readonly MetaPayClient _metaPayClient;
+    private readonly IPaymentClient _paymentClient;
     private readonly MetaPayOptions _options;
 
-    public WithdrawProcessor(MetaPayClient metaPayClient, IOptions<MetaPayOptions> optionsAccessor)
+    public WithdrawProcessor(
+        MetaPayClient metaPayClient,
+        IPaymentClient paymentClient,
+        IOptions<MetaPayOptions> optionsAccessor)
     {
         _metaPayClient = metaPayClient ?? throw new ArgumentNullException(nameof(metaPayClient));
+        _paymentClient = paymentClient ?? throw new ArgumentNullException(nameof(paymentClient));
         _options = optionsAccessor.Value;
     }
 
@@ -23,7 +29,7 @@ internal class WithdrawProcessor : IMessageProcessor
     {
         var request = WithdrawRequest.Parser.ParseFrom(data.Span);
         var settings = JsonSerializer.Deserialize<MetaPayWithdrawSettings>(
-            request.ApplyInfo, 
+            request.ApplyInfo,
             MetaPayUtility.SerializerOptions)!;
 
         var order = new WithdrawOrder(
@@ -46,6 +52,13 @@ internal class WithdrawProcessor : IMessageProcessor
             settings,
             new MetaPayWithdrawResponse(
                 withdrawResponse.FormId));
+
+        await _paymentClient
+            .SaveWithdrawFormThirdPartyOrderNoAsync(
+                settings.FormId,
+                withdrawResponse.ThirdPartyOrderNo,
+                cancellationToken)
+            .ConfigureAwait(false);
 
         var msg = new WithdrawResponse
         {
